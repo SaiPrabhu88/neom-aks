@@ -29,9 +29,11 @@ pipeline {
         }
         stage('Terraform Apply') {
             steps {
+                withCredentials([azureServicePrincipal(credentialsId: 'azuresp', subscriptionIdVariable: 'SUBS_ID', clientIdVariable: 'CLIENT_ID', clientSecretVariable: 'CLIENT_SECRET', tenantIdVariable: 'TENANT_ID')]) {
                 sh '''
                 terraform apply akscluster
                 '''
+                }
             }
         }
     }
