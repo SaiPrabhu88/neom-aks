@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/neom-project-ps/neom-terraform.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: ' https://github.com/SaiPrabhu88/neom-aks.git']])
             }
         }
         stage('Terraform Initialization'){
