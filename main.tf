@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "aks_rg" {
   name     = "aksResourceGrouprg"
-  location = "East US"
+  location = "Central India"
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
@@ -11,14 +11,14 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   default_node_pool {
     name       = "default"
-    node_count = 1  # Adjust to your free-tier limits
+    node_count = 1 
     vm_size    = "Standard_B2s"
   }
 
   identity {
     type = "SystemAssigned"
   }
-  
+
   tags = {
     environment = "development"
   }
