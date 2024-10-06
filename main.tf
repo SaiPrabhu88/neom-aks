@@ -12,13 +12,13 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name       = "default"
     node_count = 1 
-    vm_size    = "Standard_B2s"
+    vm_size    = "Standard_DS2_v2"
   }
 
   identity {
     type = "SystemAssigned"
   }
-  kubernetes_version = "1.25.0"
+  kubernetes_version = "1.24.7"
 
   tags = {
     environment = "development"
