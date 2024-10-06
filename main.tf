@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "aksrg" {
-  name     = "aks39"
+  name     = "raks"
   location = "eastus"
 }
 
