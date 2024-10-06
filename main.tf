@@ -1,12 +1,12 @@
-resource "azurerm_resource_group" "aks-rg" {
+resource "azurerm_resource_group" "aksrg" {
   name     = "aks"
   location = "eastus"
 }
 
-resource "azurerm_kubernetes_cluster" "aks-cls" {
+resource "azurerm_kubernetes_cluster" "akscls" {
   name                = "aks-cluster"
-  location            = azurerm_resource_group.aks-rg.location
-  resource_group_name = azurerm_resource_group.aks-rg.name
+  location            = azurerm_resource_group.aksrg.location
+  resource_group_name = azurerm_resource_group.aksrg.name
   dns_prefix          = "akscluster1"
 
   default_node_pool {
@@ -25,12 +25,12 @@ resource "azurerm_kubernetes_cluster" "aks-cls" {
 }
 
 output "client_certificate" {
-  value     = azurerm_kubernetes_cluster.aks-cls.kube_config[0].client_certificate
+  value     = azurerm_kubernetes_cluster.akscls.kube_config[0].client_certificate
   sensitive = true
 }
 
 output "kube_config" {
-  value = azurerm_kubernetes_cluster.aks-cls.kube_config_raw
+  value = azurerm_kubernetes_cluster.akscls.kube_config_raw
 
   sensitive = true
 }
