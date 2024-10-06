@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "aks-rg" {
   name     = "aks"
-  location = "Central India"
+  location = "eastus"
 }
 
 resource "azurerm_kubernetes_cluster" "aks-cls" {
