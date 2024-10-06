@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "aks_rg" {
   name     = "aksResourceGrouprg"
-  location = "Central India"
+  location = "centralindia"
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
@@ -18,6 +18,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   identity {
     type = "SystemAssigned"
   }
+  kubernetes_version = "1.25.0"
 
   tags = {
     environment = "development"
