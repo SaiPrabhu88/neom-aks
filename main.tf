@@ -18,7 +18,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   identity {
     type = "SystemAssigned"
   }
-  kubernetes_version = "1.24.7"
+  kubernetes_version = "1.27.7"
 
   tags = {
     environment = "development"
