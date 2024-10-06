@@ -11,7 +11,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   default_node_pool {
     name       = "default"
-    node_count = 1 
+    node_count = 1
     vm_size    = "Standard_DS2_v2"
   }
 
@@ -24,14 +24,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
     environment = "development"
   }
 }
-
-resource "azurerm_kubernetes_cluster_node_pool" "additional_nodes" {
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
-  name                  = "additional"
-  node_count            = 1 
-  vm_size               = "Standard_B2s"
-}
-
 output "kube_config" {
   value = azurerm_kubernetes_cluster.aks.kube_config_raw
   sensitive = true
