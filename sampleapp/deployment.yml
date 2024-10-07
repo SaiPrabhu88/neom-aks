@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sampleapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sampleapp
+  template:
+    metadata:
+      name: sampleapp
+      labels:
+        app: sampleapp
+    spec:
+      containers:
+        - name: sampleapp
+          image: $CONTAINER_REGISTRY/${IMAGE_NAME}:${IMAGE_TAG}
+          ports:
+            - containerPort: 80

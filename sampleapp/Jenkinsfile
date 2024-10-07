@@ -34,6 +34,12 @@ pipeline {
                 sh 'az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AKS_CLUSTER_NAME --overwrite-existing'
             }
         }
+        stage('Deployment') {
+            steps {
+                sh 'kubectl apply -f sampleapp/deployment.yml'
+                sh 'kubectl apply -f sampleapp/service.yml'
+            }
+        }
     }
     post {
         always {
