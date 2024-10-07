@@ -17,7 +17,8 @@ pipeline {
             steps {
                 withCredentials([azureServicePrincipal(credentialsId: 'azuresp', subscriptionIdVariable: 'SUBS_ID', clientIdVariable: 'CLIENT_ID', clientSecretVariable: 'CLIENT_SECRET', tenantIdVariable: 'TENANT_ID')]) {
                 sh '''
-                az login --service-principal -var subscription_id="$SUBS_ID" -var tenant_id="$TENANT_ID" -var client_id="$CLIENT_ID" -var client_secret="$CLIENT_SECRET"
+                az login --service-principal -u "$CLIENT_ID" -p "$CLIENT_SECRET" -t "TENANT_ID"
+                az account set -s "$SUBS_ID"
                 '''
                 }
             }
