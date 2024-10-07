@@ -16,5 +16,3 @@ spec:
       containers:
         - name: sampleapp
           image: azurecontainer77.azurecr.io/sampleapp:latest
-          ports:
-            - containerPort: 3000
