@@ -3,7 +3,7 @@ pipeline {
     environment {
 
         AZURESVP = credentials('azuresp')
-        CONTAINER_REGISTRY = "azurecontainer77"
+        CONTAINER_REGISTRY = "azurecontainer77.azurecr.io"
         REGISTRY_URL = "azurecontainer77.azurecr.io"
         AZURESP = credentials('azuresp')
         RESOURCE_GROUP = "acr"
