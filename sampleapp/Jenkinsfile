@@ -4,9 +4,9 @@ pipeline {
 
         AZURESVP = credentials('azuresp')
         CONTAINER_REGISTRY = "azurecontainer77.azurecr.io"
-        REGISTRY_URL = "azurecontainer77.azurecr.io"
         AZURESP = credentials('azuresp')
-        RESOURCE_GROUP = "acr"
+        AZURE_RESOURCE_GROUP = "aksResourceGrouprg"
+        AKS_CLUSTER_NAME = "myAKSClusteraks"
         IMAGE_NAME = "sampleapp"
         IMAGE_TAG = "latest"
     }
@@ -28,6 +28,14 @@ pipeline {
                 sh 'docker build -t $CONTAINER_REGISTRY/$IMAGE_NAME:$IMAGE_TAG sampleapp/.'
                 sh 'docker push $CONTAINER_REGISTRY/$IMAGE_NAME:$IMAGE_TAG'
             }
+        }
+        stage('Cluster Connectivity') {
+            steps {
+                sh 'az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AKS_CLUSTER_NAME --overwrite-existing'
+            }
+        }
+        post {
+            cleanWs()
         }
     }
 }
