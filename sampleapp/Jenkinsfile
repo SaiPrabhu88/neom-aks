@@ -7,8 +7,8 @@ pipeline {
         REGISTRY_URL = "azurecontainer77.azurecr.io"
         AZURESP = credentials('azuresp')
         RESOURCE_GROUP = "acr"
-        IMAGE_NAME = sampleapp
-        IMAGE_TAG = latest
+        IMAGE_NAME = "sampleapp"
+        IMAGE_TAG = "latest"
     }
     stages {
         stage('Checkout') {
