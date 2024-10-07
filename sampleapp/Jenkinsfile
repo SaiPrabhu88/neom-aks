@@ -15,17 +15,10 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                script {
-                    dockerImage = docker.build CONTAINER_REGISTRY
-                }
-            }
-        }
-        stage('Push Image') {
-            steps {
-                script {
-                    docker.withRegistry( "http://${REGISTRY_URL}", AZURESP ) {
-                    dockerImage.push()
-                    }
+                withCredentials([azureServicePrincipal(credentialsId: 'azuresp', subscriptionIdVariable: 'SUBS_ID', clientIdVariable: 'CLIENT_ID', clientSecretVariable: 'CLIENT_SECRET', tenantIdVariable: 'TENANT_ID')]) {
+                sh '''
+                az login --service-principal -var subscription_id="$SUBS_ID" -var tenant_id="$TENANT_ID" -var client_id="$CLIENT_ID" -var client_secret="$CLIENT_SECRET"
+                '''
                 }
             }
         }
