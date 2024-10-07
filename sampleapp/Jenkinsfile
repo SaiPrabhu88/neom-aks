@@ -1,6 +1,10 @@
 pipeline {
     agent any
     environment {
+        ARM_CLIENT_ID = credentials('ARM_CLIENT_ID')
+        ARM_CLIENT_SECRET = credentials('ARM_CLIENT_SECRET')
+        ARM_TENANT_ID = credentials('ARM_TENANT_ID')
+        ARM_SUBSCRIPTION_ID = credentials('ARM_SUBSCRIPTION_ID')
         CONTAINER_REGISTRY = "azurecontainer77"
         REGISTRY_URL = "azurecontainer77.azurecr.io"
         AZURESP = credentials('azuresp')
@@ -15,11 +19,8 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                withCredentials([azureServicePrincipal(credentialsId: 'azuresp', subscriptionIdVariable: 'SUBS_ID', clientIdVariable: 'CLIENT_ID', clientSecretVariable: 'CLIENT_SECRET', tenantIdVariable: 'TENANT_ID')]) {
-                sh '''
-                az login --service-principal -u "$CLIENT_ID" -p "$CLIENT_SECRET" -t "TENANT_ID"
-                az account set -s "$SUBS_ID"
-                '''
+                withCredentials([azureServicePrincipal(credentialsId: 'azuresp')]) {
+                sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t AZURE_TENANT_ID'
                 }
             }
         }
