@@ -34,8 +34,8 @@ pipeline {
                 sh 'az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AKS_CLUSTER_NAME --overwrite-existing'
             }
         }
-        post {
-            cleanWs()
-        }
+    }
+    post {
+        cleanWs()
     }
 }
