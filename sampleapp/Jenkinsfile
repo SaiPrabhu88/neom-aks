@@ -38,6 +38,7 @@ pipeline {
             steps {
                 sh 'kubectl apply -f sampleapp/deployment.yml'
                 sh 'kubectl apply -f sampleapp/service.yml'
+                sh 'kubectl apply -f sampleapp/ingress.yml'
             }
         }
     }
