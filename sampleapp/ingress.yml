@@ -3,8 +3,9 @@ kind: Ingress
 metadata:
   name: minimal-ingress
   namespace: default
+  nnotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: webapprouting.kubernetes.azure.com
   rules:
   - http:
       paths:
