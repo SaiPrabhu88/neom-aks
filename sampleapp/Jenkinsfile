@@ -16,8 +16,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'az login --service-principal -u $AZURESP_CLIENT_ID -p $AZURESP_CLIENT_SECRET -t $AZURESP_TENANT_ID'                
-                }
+                sh 'az login --service-principal -u $AZURESP_CLIENT_ID -p $AZURESP_CLIENT_SECRET -t $AZURESP_TENANT_ID'
             }
         }
     }
