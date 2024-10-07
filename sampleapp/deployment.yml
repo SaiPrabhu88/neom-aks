@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: sampleapp
-          image: $CONTAINER_REGISTRY/${IMAGE_NAME}:${IMAGE_TAG}
+          image: azurecontainer77.azurecr.io/sampleapp:latest
           ports:
             - containerPort: 80
