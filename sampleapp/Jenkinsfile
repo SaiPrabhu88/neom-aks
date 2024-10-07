@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        AZURESP = credentials('azuresp')
+
+        AZURESVP = credentials('azuresp')
         CONTAINER_REGISTRY = "azurecontainer77"
         REGISTRY_URL = "azurecontainer77.azurecr.io"
         AZURESP = credentials('azuresp')
@@ -16,7 +17,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'az login --service-principal -u $AZURESP_CLIENT_ID -p $AZURESP_CLIENT_SECRET -t $AZURESP_TENANT_ID'
+                sh 'az login --service-principal -u $AZURESVP_CLIENT_ID -p $AZURESVP_CLIENT_SECRET -t $AZURESVP_TENANT_ID'
             }
         }
     }
