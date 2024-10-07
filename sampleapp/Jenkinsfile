@@ -23,9 +23,10 @@ pipeline {
                 sh 'az acr login --name $CONTAINER_REGISTRY'
             }
         }
-        stage('Build Image') {
+        stage('Build and Push Image') {
             steps {
                 sh 'docker build -t $CONTAINER_REGISTRY.azurecr.io/$IMAGE_NAME:$IMAGE_TAG sampleapp/.'
+                sh 'docker push $CONTAINER_REGISTRY.azurecr.io/$IMAGE_NAME:$IMAGE_TAG'
             }
         }
     }
