@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker build -t $CONTAINER_REGISTRY.azurecr.io/$IMAGE_NAME:$IMAGE_TAG sampleapp/Dockerfile'
+                sh 'docker build -t $CONTAINER_REGISTRY.azurecr.io/$IMAGE_NAME:$IMAGE_TAG sampleapp/.'
             }
         }
     }
