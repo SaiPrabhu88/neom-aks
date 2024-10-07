@@ -7,7 +7,8 @@ pipeline {
         REGISTRY_URL = "azurecontainer77.azurecr.io"
         AZURESP = credentials('azuresp')
         RESOURCE_GROUP = "acr"
-        dockerImage = ''
+        IMAGE_NAME = sampleapp
+        IMAGE_TAG = latest
     }
     stages {
         stage('Checkout') {
@@ -15,11 +16,16 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: ' https://github.com/SaiPrabhu88/neom-aks.git']])
             }
         }
-        stage('Build Image') {
+        stage('Connect to ACR') {
             steps {
                 sh 'az login --service-principal -u $AZURESVP_CLIENT_ID -p $AZURESVP_CLIENT_SECRET -t $AZURESVP_TENANT_ID'
                 sh 'az account set -s $AZURESVP_SUBSCRIPTION_ID'
                 sh 'az acr login --name $CONTAINER_REGISTRY'
+            }
+        }
+        stage('Build Image') {
+            steps {
+                sh 'docker build -t $CONTAINER_REGISTRY.azurecr.io/$IMAGE_NAME:$IMAGE_TAG sampleapp/Dokcerfile'
             }
         }
     }
